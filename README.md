@@ -3,7 +3,8 @@
 mkdir ~/sshQuic
 cd ~/sshQuic
 dirpath=`pwd`
-git clone https://github.com/l0veshe/sshCopyAutoSH.git
+wget https://raw.githubusercontent.com/l0veshe/sshCopyAutoSH/master/sshCopyAuto
+chmod a+x ./sshCopyAuto
 sudo -c "echo \"export PATH=$PATH:$dirpath\" >> /etc/profile"
 source /etc/profile
 ```
