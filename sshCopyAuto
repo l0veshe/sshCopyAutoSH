@@ -1,0 +1,36 @@
+#!/bin/bash
+
+__thisfiledir="/Users/hank/bin/sshQuic"
+__port=`cat "$__thisfiledir/.port"`
+if [ "$__port" = '' ] ;then
+   __port=22
+fi
+__name=`whoami`
+__rsa='~/.ssh/id_rsa.pub'
+__ip=''
+__host=''
+
+
+dothat(){
+    temp=''
+    read -p "Default($1: $2)? " temp
+    if [ ! "$temp" = '' ] ;then
+        echo $temp
+    else
+        echo $2
+   fi
+}
+
+__port=`dothat 'Port' $__port`
+echo -n $__port > "$__thisfiledir/.port"
+__name=`dothat 'LoginName' $__name`
+__rsa=`dothat 'RsaFile' $__rsa`
+__ip=`dothat 'IP' $__ip`
+if [ "$__ip" = '' ] ;then
+    echo "No targetHost" && exit
+fi
+__host=`dothat 'Take A Host Name' $__host`
+
+ssh-copy-id -p 10001 -i ~/.ssh/id_rsa.pub  hank@$__ip
+echo "ssh -p $__port -l $__name $__ip" > "$__thisfiledir/2s_$__host"
+chmod +x ./$thisfiledir/2s_$__host
