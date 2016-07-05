@@ -1,6 +1,6 @@
 #!/bin/bash
 
-__thisfiledir="/Users/hank/bin/sshQuic"
+__thisfiledir="installDir"
 __port=`cat "$__thisfiledir/.port"`
 if [ "$__port" = '' ] ;then
    __port=22
